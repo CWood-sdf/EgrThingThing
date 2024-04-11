@@ -1,0 +1,56 @@
+
+
+
+
+
+
+
+Started logging.
+11:48:31.960243 Language server launched with arguments:
+11:48:31.960246   arg[0] = /home/christopher-wood/.local/share/nvim/mason/bin/arduino-language-server
+11:48:31.960248   arg[1] = -clangd
+11:48:31.960250   arg[2] = /home/christopher-wood/.local/share/nvim/mason/bin/clangd
+11:48:31.960251   arg[3] = -fqbn
+11:48:31.960253   arg[4] = arduino:avr:uno
+11:48:31.960254   arg[5] = -cli-config
+11:48:31.960255   arg[6] = /home/christopher-wood/snap/arduino-cli/45/.arduino15/arduino-cli.yaml
+11:48:31.960260   arg[7] = -log
+11:48:31.960261   arg[8] = true
+11:48:31.960282 arduino-cli found at /snap/bin/arduino-cli
+11:48:31.960294 logging to /home/christopher-wood/projects/EgrThingThing/inols.log
+11:48:31.960364 [97mLS: : Initial board configuration: arduino:avr:uno[0m
+11:48:31.960368 [97mLS: : arduino-language-server Version: 0.7.6 Commit: 9c2f44d Date: 2024-02-06T14:12:58Z[0m
+11:48:31.960395 [97mLS: : Language server temp directory: /tmp/arduino-language-server391088408[0m
+11:48:31.960397 [97mLS: : Language server build path: /tmp/arduino-language-server391088408/build[0m
+11:48:31.960399 [97mLS: : Language server build sketch root: /tmp/arduino-language-server391088408/build/sketch[0m
+11:48:31.960401 [97mLS: : Language server FULL build path: /tmp/arduino-language-server391088408/fullbuild[0m
+11:48:31.961259 IN Elapsed: 31.239µs
+11:48:31.961728 [92mIDE --> LS REQU initialize 1[0m
+
+
+
+
+
+
+
+Started logging.
+11:49:00.349970 Language server launched with arguments:
+11:49:00.349973   arg[0] = /home/christopher-wood/.local/share/nvim/mason/bin/arduino-language-server
+11:49:00.349976   arg[1] = -clangd
+11:49:00.349978   arg[2] = /home/christopher-wood/.local/share/nvim/mason/bin/clangd
+11:49:00.349979   arg[3] = -fqbn
+11:49:00.349980   arg[4] = arduino:avr:uno
+11:49:00.349982   arg[5] = -cli-config
+11:49:00.349983   arg[6] = /home/christopher-wood/snap/arduino-cli/45/.arduino15/arduino-cli.yaml
+11:49:00.349987   arg[7] = -log
+11:49:00.349988   arg[8] = true
+11:49:00.350007 arduino-cli found at /snap/bin/arduino-cli
+11:49:00.350013 logging to /home/christopher-wood/projects/EgrThingThing/inols.log
+11:49:00.350088 [97mLS: : Initial board configuration: arduino:avr:uno[0m
+11:49:00.350091 [97mLS: : arduino-language-server Version: 0.7.6 Commit: 9c2f44d Date: 2024-02-06T14:12:58Z[0m
+11:49:00.350094 [97mLS: : Language server temp directory: /tmp/arduino-language-server2962090942[0m
+11:49:00.350097 [97mLS: : Language server build path: /tmp/arduino-language-server2962090942/build[0m
+11:49:00.350098 [97mLS: : Language server build sketch root: /tmp/arduino-language-server2962090942/build/sketch[0m
+11:49:00.350100 [97mLS: : Language server FULL build path: /tmp/arduino-language-server2962090942/fullbuild[0m
+11:49:00.350376 IN Elapsed: 26.641µs
+11:49:00.350454 [92mIDE --> LS REQU initialize 1[0m
