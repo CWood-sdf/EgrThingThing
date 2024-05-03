@@ -32,21 +32,28 @@ public:
 };
 
 #include <Servo.h>
-const int trigPin = 12;
-const int echoPin = 11;
+const int trigPin = 5;
+const int echoPin = 3;
+const int leftPin = 9;
+const int rightPin = 8;
+const int sigStop = 90;
+const int sigFwd = 180;
 Servo left;
 Servo right;
 void spinLeft() {
-    left.write(90);
+    left.write(sigFwd);
 }
 void stopLeft() {
-    left.write(0);
+    left.write(sigStop);
 }
 void spinRight() {
-    right.write(90);
+    right.write(0);
 }
 void stopRight() {
-    right.write(0);
+    right.write(91);
+}
+void reverseRight() {
+    right.write(180);
 }
 
 double calDist() {
@@ -56,7 +63,7 @@ double calDist() {
     delayMicroseconds(10);
     digitalWrite(trigPin, LOW);
     long duration = pulseIn(echoPin, HIGH);
-    double distance = duration * 0.034 / 2.0;
+    double distance = duration / 74.0 / 2.0;
     return distance;
 }
 
@@ -65,47 +72,68 @@ void setup() {
     Serial.begin(9600);
     pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);
-    left.attach(9);
-    right.attach(10);
+    // pinMode(leftPin, OUTPUT);
+    // pinMode(rightPin, OUTPUT);
+    // for (int i = 2; i <= 10; i++) {
+    //     pinMode(i, OUTPUT);
+    // }
+    // digitalWrite(leftPin, HIGH);
+    left.attach(leftPin);
+    right.attach(rightPin);
+    // delay(10000);
+    // left.attach(9);
+    Serial.println("yo");
+    // right.attach(10);
 }
 
+int i = 0;
 void loop() {
     double dist = calDist();
-    Serial.println(dist);
     switch (state.getState()) {
     case States::PowerOn:
-        if (dist < 100) {
+        stopLeft();
+        stopRight();
+        if (dist < 4 && state.getTime() > 5000) {
+            Serial.println("Switching to drive state");
             state.changeState(States::Drive);
         }
         break;
     case States::Drive:
         spinLeft();
         spinRight();
-        if (dist < 10) {
+        if (dist < 4) {
+            Serial.println("Switching to blocked state");
             state.changeState(States::Blocked);
         }
         break;
     case States::Blocked:
-        stopLeft();
-        spinRight();
-        if (dist > 10) {
+        spinLeft();
+        reverseRight();
+        if (dist > 4 && state.getTime() > 1000) {
+            Serial.println("Switching to drive state");
             state.changeState(States::Drive);
         }
-        if (state.getTime() > 2000) {
+        if (state.getTime() > 5000) {
+            Serial.println("Switching to sleep state");
             state.changeState(States::Sleep);
         }
         break;
     case States::Sleep:
+        stopLeft();
+        stopRight();
         state.sleep(100);
-        if (dist < 10) {
+        if (dist < 4 && state.getTime() > 5000) {
+            Serial.println("Switching to sleep block state");
             state.changeState(States::SleepBlocked);
         }
         break;
     case States::SleepBlocked:
-        if (dist > 10) {
+        if (dist > 4) {
+            Serial.println("Switching to sleep state");
             state.changeState(States::Sleep);
         }
         if (state.getTime() > 2000) {
+            Serial.println("Switching to drive state");
             state.changeState(States::Drive);
         }
         break;
